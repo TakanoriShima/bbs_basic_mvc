@@ -39,7 +39,7 @@ CREATE TABLE `messages` (
 
 LOCK TABLES `messages` WRITE;
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
-INSERT INTO `messages` VALUES (1,'山田太郎','はじめまして！','ラーメン好きなんです！','391341459618b2be629ca68.92510760.jpg','2021-11-10 02:18:14'),(2,'木下順子','秋ですね','今年も京都の紅葉を見に行きたいなあ','1317705121618b2c168a3a12.18812375.jpg','2021-11-10 02:19:02');
+INSERT INTO `messages` VALUES (1,'木下順子','ラーメン好きなんですよね','よろしくお願いします。','1929539505618b51483bde50.58560948.jpg','2021-11-10 04:57:44'),(2,'山田太郎','秋ですね','京都にいきたいなあ','2095324982618b51622b7af4.63981928.jpg','2021-11-10 04:58:10');
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-10 11:23:11
+-- Dump completed on 2021-11-10 13:58:50

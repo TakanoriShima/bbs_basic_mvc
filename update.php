@@ -28,24 +28,25 @@
         $pre_image = $message->image;
         
         // 画像が選択されていればMessageインスタンスの画像ファイル名を上書き
-        if($_FILES['image']['size'] !== 0){
+        if($image !== ''){
             $message->image = $image;
         }
-        
+
         // 入力チェック
         $errors = $message->validate();
         
         // 入力エラーが1つもなければ
         if(count($errors) === 0){
             
-            // 以前の画像ファイルの物理削除
-            unlink('upload/' . $pre_image);
-            
-            // 新規画像の物理的アップロード
-            $image = Message::upload();
-            
-            // インスタンスの画像ファイル名の更新
-            $message->image = $image;
+            // 画像が新しく選択されたならば
+            if($image !== ''){
+                // 以前の画像ファイルの物理削除
+                unlink('upload/' . $pre_image);
+                // 新規画像の物理的アップロード
+                $image = Message::upload();
+                // インスタンスの画像ファイル名の更新
+                $message->image = $image;
+            }
             
             // データベースの更新
             $flash_message = $message->save();

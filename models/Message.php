@@ -92,32 +92,6 @@
             }
         }
         
-        // // 画像ファイル名を取得するメソッド（uploadフォルダ内のファイルを物理削除するため）
-        // public static function get_image_name_by_id($id){
-        //     try {
-        //         // データベースと接続
-        //         $pdo = self::get_connection();
-        //         // 
-        //         $stmt = $pdo->prepare('SELECT * FROM messages WHERE id=:id');
-        //         // バインド処理
-        //         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        //         // 実行
-        //         $stmt->execute();
-        //         // フェッチの結果を、Messageクラスのインスタンスにマッピングする
-        //         $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'Message');
-                
-        //         $message = $stmt->fetch();
-        
-        //         self::close_connection($pdo, $stmp);
-                
-        //         // 画像ファイル名を返す
-        //         return $message->image;
-                
-        //     } catch (PDOException $e) {
-        //         return 'PDO exception: ' . $e->getMessage();
-        //     }
-        // }
-        
         // 投稿データを1件登録もしくは更新するメソッド
         public function save(){
             try {
@@ -140,8 +114,9 @@
                     return "投稿が成功しました。";
                 }else{ // 更新の場合
                     // SQL文の準備
-                    $stmt = $pdo->prepare('UPDATE messages SET title=:title, body=:body, image=:image WHERE id=:id');
-                    // バインド処理                
+                    $stmt = $pdo->prepare('UPDATE messages SET name=:name, title=:title, body=:body, image=:image WHERE id=:id');
+                    // バインド処理
+                    $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
                     $stmt->bindValue(':title', $this->title, PDO::PARAM_STR);
                     $stmt->bindValue(':body', $this->body, PDO::PARAM_STR);
                     $stmt->bindValue(':image', $this->image, PDO::PARAM_STR);

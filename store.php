@@ -11,12 +11,6 @@
     $body = $_POST['body'];
     $image = $_FILES['image']['name'];
 
-    // 画像が選択されていなければ
-    if($_FILES['image']['size'] === 0){
-        // 画像ファイル名を空文字にセット
-        $image = '';
-    }
-        
     // 新しいMessageインスタンスを生成
     $message = new Message($name, $title, $body, $image);
 
