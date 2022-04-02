@@ -15,7 +15,7 @@
                     PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',   //MySQL サーバーへの接続時に実行するコマンド
                 );
                 
-                $pdo = new PDO('mysql:host=localhost;dbname=bbs_basic_mvc', 'root', '', $options);
+                $pdo = new PDO('mysql:host=localhost;dbname=bbs', 'root', '', $options);
                 return $pdo;
                 
             } catch (PDOException $e) {

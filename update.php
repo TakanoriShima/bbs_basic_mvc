@@ -2,7 +2,7 @@
     // Controller
     
     // 外部ファイルの読み込み
-    require_once 'filters/post_filter.php';
+    require_once 'filters/csrf_filter.php';
     require_once 'models/Message.php';
     
     // フォームからの指定されたid値を取得
@@ -43,20 +43,37 @@
                 // 以前の画像ファイルの物理削除
                 unlink('upload/' . $pre_image);
                 // 新規画像の物理的アップロード
-                $image = Message::upload();
-                // インスタンスの画像ファイル名の更新
-                $message->image = $image;
+                if($message->upload()){
+                    // データベースの更新
+                    $flash_message = $message->save();
+                    
+                    // セッションにフラッシュメッセージを保存        
+                    $_SESSION['flash_message'] = $flash_message;
+                    
+                    // リダイレクト
+                    header('Location: show.php?id=' . $id);
+                    exit;
+                }else{
+                    // セッションにエラーメッセージを保存
+                    $errors = array('画像のアップロードに失敗しました');
+                    $_SESSION['errors'] = $errors;
+                    
+                    // リダイレクト
+                    header('Location: show.php?id=' . $id);
+                    exit;
+                }
+
+            }else{
+                // データベースの更新
+                $flash_message = $message->save();
+                
+                // セッションにフラッシュメッセージを保存        
+                $_SESSION['flash_message'] = $flash_message;
+                
+                // リダイレクト
+                header('Location: show.php?id=' . $id);
+                exit;
             }
-            
-            // データベースの更新
-            $flash_message = $message->save();
-            
-            // セッションにフラッシュメッセージを保存        
-            $_SESSION['flash_message'] = $flash_message;
-            
-            // リダイレクト
-            header('Location: show.php?id=' . $id);
-            exit;
             
         }else{
             // セッションにエラー配列をセット

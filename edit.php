@@ -13,8 +13,6 @@
     // 指定されたid値からMessageインスタンスを取得
     $message = Message::find($id);
     
-
-
     // Messageインスタンスが存在しなければ
     if($message === false){
         // 空のエラー配列を作成

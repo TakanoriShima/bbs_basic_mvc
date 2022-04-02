@@ -162,16 +162,22 @@
         }
         
         // ファイルをアップロードするメソッド
-        public static function upload(){
-            // ファイル名をランダムに生成（ユニーク化）
-            $image = uniqid(mt_rand(), true); 
-            // アップロードされたファイルの拡張子を取得
-            $image .= '.' . substr(strrchr($_FILES['image']['name'], '.'), 1);
-            // 画像のフルパスを設定
-            $file = 'upload/' . $image;
-            // uploadディレクトリにファイル保存
-            move_uploaded_file($_FILES['image']['tmp_name'], $file);
-            // 新しく作成された画像名を返す
-            return $image;
+        public function upload(){
+            try{
+                // ファイル名をランダムに生成（ユニーク化）
+                $image = uniqid(mt_rand(), true); 
+                // アップロードされたファイルの拡張子を取得
+                $image .= '.' . substr(strrchr($_FILES['image']['name'], '.'), 1);
+                // 画像のフルパスを設定
+                $file = 'upload/' . $image;
+                // uploadディレクトリにファイル保存
+                move_uploaded_file($_FILES['image']['tmp_name'], $file);
+                // 画像ファイル名のプロパティを更新
+                $this->image = $image;
+                // 新しく作成された画像名を返す
+                return true;
+            }catch(Exception $e){
+                return false;
+            }
         }
     }

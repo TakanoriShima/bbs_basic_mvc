@@ -18,7 +18,9 @@
 --
 -- Table structure for table `messages`
 --
-
+DROP DATABASE IF EXISTS `bbs`;
+CREATE DATABASE `bbs`;
+USE `bbs`;
 DROP TABLE IF EXISTS `messages`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -51,5 +53,5 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
+SELECT * FROM `messages`;
 -- Dump completed on 2021-11-10 13:58:50

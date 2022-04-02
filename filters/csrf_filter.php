@@ -8,7 +8,7 @@
     $token = $_POST['_token'];
     
     // GET通信もしくはtokenが正しく取得できない場合は不正アクセスと判定
-    if($_SERVER['REQUEST_METHOD'] === 'GET' || $token !== session_id()){
+    if($token !== session_id()){
         // 空のエラー配列を準備
         $errors = array();
         $errors[] = '不正アクセスです';

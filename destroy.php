@@ -2,7 +2,7 @@
     // Controller
     
     // 外部ファイルの読み込み
-    require_once 'filters/post_filter.php';
+    require_once 'filters/csrf_filter.php';
     require_once 'models/Message.php';
 
     // フォームから飛んできたidを取得
@@ -21,6 +21,7 @@
         // リダイレクト
         header('Location: index.php');
         exit;
+        
     }else{
         
         // データベースからデータ削除
@@ -35,21 +36,3 @@
         // view の表示
         include_once 'views/show_view.php';
     }
-       
-
-    
-
-    
-    // そのような投稿が存在すれば
-    if($message !== false){
-        
-
-    }else{
-        // エラーメッセージのセット
-        $_SESSION['error'] = '存在しない投稿です';
-        // リダイレクト
-        header('Location: index.php');
-        exit;
-    }
-
-    
